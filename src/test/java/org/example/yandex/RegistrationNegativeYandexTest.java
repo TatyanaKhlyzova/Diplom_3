@@ -1,9 +1,9 @@
 package org.example.yandex;
 
-import org.example.ForYandexSetUp;
-import org.example.LoginPage;
-import org.example.MainPage;
-import org.example.RegisterPage;
+import org.example.additional.ForYandexSetUp;
+import org.example.pageobject.LoginPage;
+import org.example.pageobject.MainPage;
+import org.example.pageobject.RegisterPage;
 import org.hamcrest.MatcherAssert;
 import org.junit.After;
 import org.junit.Before;
@@ -17,16 +17,16 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.example.RandomData.randomString;
+import static org.example.additional.RandomData.randomString;
 import static org.hamcrest.CoreMatchers.startsWith;
 
 @RunWith(Parameterized.class)
-public class RegistrationNegativeTest {
+public class RegistrationNegativeYandexTest {
     private static WebDriver driver;
     private final By buttonToGoRegistrationUser;
     public String email = randomString(10) + "@yandex.ru";
     public String name = randomString(12);
-    public RegistrationNegativeTest(By buttonToGoRegistrationUser){
+    public RegistrationNegativeYandexTest(By buttonToGoRegistrationUser){
         this.buttonToGoRegistrationUser = buttonToGoRegistrationUser;
     }
     static MainPage mainPage = new MainPage(driver);

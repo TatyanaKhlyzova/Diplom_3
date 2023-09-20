@@ -1,4 +1,4 @@
-package org.example;
+package org.example.additional;
 
 public class ApiCreateUser {
     public final String email;

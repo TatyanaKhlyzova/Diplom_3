@@ -1,9 +1,10 @@
-package org.example.chrome;
+package org.example.yandex;
 
-import org.example.ApiUser;
-import org.example.LoginPage;
-import org.example.MainPage;
-import org.example.RegisterPage;
+import org.example.additional.ApiUser;
+import org.example.additional.ForYandexSetUp;
+import org.example.pageobject.LoginPage;
+import org.example.pageobject.MainPage;
+import org.example.pageobject.RegisterPage;
 import org.hamcrest.MatcherAssert;
 import org.junit.After;
 import org.junit.Before;
@@ -13,28 +14,32 @@ import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
 import static io.restassured.RestAssured.given;
-import static org.example.RandomData.randomString;
+import static org.example.additional.RandomData.randomString;
 import static org.hamcrest.CoreMatchers.startsWith;
+
 @RunWith(Parameterized.class)
-public class RegistrationTest {
+public class RegistrationYandexTest {
     private static WebDriver driver;
     private final By buttonToGoRegistrationUser;
     public String email = randomString(8) + "@yandex.ru";
     public String password = randomString(7);
     public String name = randomString(9);
 
-    public RegistrationTest(By buttonToGoRegistrationUser){
+    public RegistrationYandexTest(By buttonToGoRegistrationUser){
         this.buttonToGoRegistrationUser = buttonToGoRegistrationUser;
     }
 
     @Before
-    public void setDriver(){
-        driver = new ChromeDriver();
+    public void setYandexDriver(){
+        System.setProperty("webdriver.chrome.driver", ForYandexSetUp.PATH_TO_YANDEX_DRIVER);
+        ChromeOptions options = new ChromeOptions();
+        options.setBinary(ForYandexSetUp.PATH_TO_YANDEX_EXE);
+        driver = new ChromeDriver(options);
         driver.get("https://stellarburgers.nomoreparties.site/");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }

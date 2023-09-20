@@ -1,7 +1,8 @@
-package org.example.chrome;
+package org.example.yandex;
 
 import org.example.additional.ApiCreateUser;
 import org.example.additional.ApiUser;
+import org.example.additional.ForYandexSetUp;
 import org.example.pageobject.ConstructorPage;
 import org.example.pageobject.LoginPage;
 import org.example.pageobject.MainPage;
@@ -13,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,7 +22,7 @@ import static io.restassured.RestAssured.given;
 import static org.example.additional.RandomData.randomString;
 
 
-public class ConstructorTest {
+public class ConstructorYandexTest {
     private static WebDriver driver;
     public String email = randomString(8) + "@yandex.ru";
     public String password = randomString(7);
@@ -37,8 +39,11 @@ public class ConstructorTest {
     }
 
     @Before
-    public void setDriver(){
-        driver = new ChromeDriver();
+    public void setYandexDriver(){
+        System.setProperty("webdriver.chrome.driver", ForYandexSetUp.PATH_TO_YANDEX_DRIVER);
+        ChromeOptions options = new ChromeOptions();
+        options.setBinary(ForYandexSetUp.PATH_TO_YANDEX_EXE);
+        driver = new ChromeDriver(options);
         driver.get("https://stellarburgers.nomoreparties.site/");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }

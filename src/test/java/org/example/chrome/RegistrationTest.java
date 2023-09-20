@@ -1,5 +1,11 @@
-package org.example;
+package org.example.chrome;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
+import org.example.additional.ApiUser;
+import org.example.pageobject.LoginPage;
+import org.example.pageobject.MainPage;
+import org.example.pageobject.RegisterPage;
 import org.hamcrest.MatcherAssert;
 import org.junit.After;
 import org.junit.Before;
@@ -14,7 +20,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.concurrent.TimeUnit;
 
 import static io.restassured.RestAssured.given;
-import static org.example.RandomData.randomString;
+import static org.example.additional.RandomData.randomString;
 import static org.hamcrest.CoreMatchers.startsWith;
 @RunWith(Parameterized.class)
 public class RegistrationTest {
@@ -44,6 +50,8 @@ public class RegistrationTest {
                 {loginToAccountButton},
         };
     }
+    @DisplayName("Check successful registration and receive login page")
+    @Description("Registration can be from main page by click account button and click personal area button")
     @Test
     public void successfulRegistrationFromLoginToAccountButtonAndFromPersonalAreaButtonTest(){
         MainPage mainPage = new MainPage(driver);

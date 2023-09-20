@@ -1,5 +1,9 @@
-package org.example;
+package org.example.chrome;
 
+import io.qameta.allure.junit4.DisplayName;
+import org.example.pageobject.LoginPage;
+import org.example.pageobject.MainPage;
+import org.example.pageobject.RegisterPage;
 import org.hamcrest.MatcherAssert;
 import org.junit.After;
 import org.junit.Before;
@@ -12,7 +16,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.example.RandomData.randomString;
+import static org.example.additional.RandomData.randomString;
 import static org.hamcrest.CoreMatchers.startsWith;
 @RunWith(Parameterized.class)
 public class RegistrationNegativeTest {
@@ -40,7 +44,7 @@ public class RegistrationNegativeTest {
         driver.get("https://stellarburgers.nomoreparties.site/");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
-
+    @DisplayName("Negative test - Check registration with password less then six char")
     @Test
     public void registrationWithPasswordLessThenSixCharTest(){
         String password = randomString(5);

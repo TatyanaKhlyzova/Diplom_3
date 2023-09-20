@@ -1,4 +1,4 @@
-package org.example;
+package org.example.pageobject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,8 +7,8 @@ public class PersonalAreaPage {
     private final WebDriver driver;
     private final By nameField = By.xpath("//*[@id='root']/div/main/div/div/div/ul/li[1]/div/div/input");
     private final By emailField = By.xpath("//*[@id='root']/div/main/div/div/div/ul/li[2]/div/div/input");
-    private final By logOutButton = By.xpath(".//button[text()=''Выход]");
-    private final By constructorButton = By.className("AppHeader_header__linkText__3q_va ml-2");
+    private final By logOutButton = By.xpath(".//button[text()='Выход']");
+    private final By constructorButton = By.xpath("//*[@id='root']/div/header/nav/ul/li[1]/a");
     private final By logoButton = By.xpath("//*[@id='root']/div/header/nav/div/a");
 
     public PersonalAreaPage(WebDriver driver) {
@@ -26,7 +26,13 @@ public class PersonalAreaPage {
     public void clickConstructorButton(){
         driver.findElement(constructorButton).click();
     }
-    public void clickLogoButton(){
-        driver.findElement(logoButton).click();
+    public void clickButtonToGoToConstructor(By buttonToGoToConstructor){
+        driver.findElement(buttonToGoToConstructor).click();
+    }
+    public By getConstructorButton() {
+        return constructorButton;
+    }
+    public By getLogoButton() {
+        return logoButton;
     }
 }

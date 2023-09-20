@@ -1,4 +1,4 @@
-package org.example;
+package org.example.additional;
 
 public class ForYandexSetUp {
     public static final String PATH_TO_YANDEX_DRIVER = "D:\\WebDriver\\bin\\chromedriverforyandex.exe";
