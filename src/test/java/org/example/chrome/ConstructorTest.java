@@ -1,6 +1,5 @@
 package org.example.chrome;
 
-import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.example.additional.ApiCreateUser;
 import org.example.additional.ApiUser;
@@ -78,16 +77,26 @@ public class ConstructorTest {
     public void tearDown() {
         driver.quit();
     }
-    @DisplayName("Check switch constructor section: buns, sauces, fillings")
-    @Description("we can check that the selected section becomes current")
+
+    @DisplayName("Make sure we're in the buns section")
     @Test
-    public void switchConstructorSection()  {
+    public void isCurrentConstructorSectionBuns()  {
         ConstructorPage constructorPage = new ConstructorPage(driver);
         String currentSectionBuns = constructorPage.classForCurrentSectionBuns();
         Assert.assertThat(currentSectionBuns, CoreMatchers.containsString("tab_tab_type_current"));
+    }
+    @DisplayName("Make sure we're in the sauces section")
+    @Test
+    public void isCurrentConstructorSectionSauces(){
+        ConstructorPage constructorPage = new ConstructorPage(driver);
         constructorPage.clickOnSaucesSection();
         String currentSectionSauces = constructorPage.classForCurrentSectionSauces();
         Assert.assertThat(currentSectionSauces, CoreMatchers.containsString("tab_tab_type_current"));
+    }
+    @DisplayName("Make sure we're in the fillings section")
+    @Test
+    public void isCurrentConstructorSectionFillings(){
+        ConstructorPage constructorPage = new ConstructorPage(driver);
         constructorPage.clickOnFillingsSection();
         String currentSectionFillings = constructorPage.classForCurrentSectionFillings();
         Assert.assertThat(currentSectionFillings, CoreMatchers.containsString("tab_tab_type_current"));
